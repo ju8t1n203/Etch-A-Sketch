@@ -58,7 +58,7 @@ Partial Class EtchASketch
         Me.WaveFormButton.Name = "WaveFormButton"
         Me.WaveFormButton.Size = New System.Drawing.Size(91, 55)
         Me.WaveFormButton.TabIndex = 0
-        Me.WaveFormButton.Text = "WaveForm"
+        Me.WaveFormButton.Text = "&WaveForm"
         Me.WaveFormButton.UseVisualStyleBackColor = True
         '
         'ColorSelectButton
