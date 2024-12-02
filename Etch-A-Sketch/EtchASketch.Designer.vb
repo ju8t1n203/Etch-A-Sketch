@@ -34,6 +34,9 @@ Partial Class EtchASketch
         '
         'DrawingPictureBox
         '
+        Me.DrawingPictureBox.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.DrawingPictureBox.Location = New System.Drawing.Point(12, 12)
         Me.DrawingPictureBox.Name = "DrawingPictureBox"
         Me.DrawingPictureBox.Size = New System.Drawing.Size(776, 346)
@@ -42,6 +45,7 @@ Partial Class EtchASketch
         '
         'ButtonBox
         '
+        Me.ButtonBox.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.ButtonBox.Controls.Add(Me.WaveFormButton)
         Me.ButtonBox.Controls.Add(Me.ColorSelectButton)
         Me.ButtonBox.Controls.Add(Me.ClearButton)

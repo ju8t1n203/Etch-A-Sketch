@@ -1,4 +1,10 @@
-﻿Public Class EtchASketch
+﻿'Justin Bell
+'RCET0265
+'Fall24
+'Etch-A-Sketch
+'link
+
+Public Class EtchASketch
 
 
     Function penColor(Optional newColor As Color = Nothing) As Color
@@ -59,7 +65,23 @@
         Me.Close()
     End Sub
 
+    Private Sub ClearButton_Click(sender As Object, e As EventArgs) Handles ClearButton.Click
+        DrawingPictureBox.Image = Nothing
+        DrawingPictureBox.BackColor = Color.White
+        penColor(Color.Black)
+    End Sub
+
+    Private Sub WaveFormButton_Click(sender As Object, e As EventArgs) Handles WaveFormButton.Click
+        DrawDivisions()
+        DrawSineWave()
+    End Sub
+
     '-----------------------------
+    Private Sub GraphicsExample_Load(sender As Object, e As EventArgs) Handles Me.Load
+        penColor(Color.Black)
+        DrawingPictureBox.BackColor = Color.White
+    End Sub
+
     Private Sub DrawingPictureBox_MouseMove(sender As Object, e As MouseEventArgs) Handles DrawingPictureBox.MouseDown, DrawingPictureBox.MouseMove
         Me.Text = $"({e.X.ToString}, {e.Y.ToString}) Button: {e.Button} Color: {penColor().Name}"
         Static oldX%, oldY%
@@ -73,8 +95,4 @@
 
     End Sub
 
-    Private Sub WaveFormButton_Click(sender As Object, e As EventArgs) Handles WaveFormButton.Click
-        DrawDivisions()
-        DrawSineWave()
-    End Sub
 End Class
