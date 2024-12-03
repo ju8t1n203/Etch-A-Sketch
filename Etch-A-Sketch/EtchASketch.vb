@@ -31,7 +31,6 @@ Public Class EtchASketch
         Dim ySpace As Integer = DrawingPictureBox.Height \ 8
 
         penColor(Color.LightGray)
-        DrawingPictureBox.BackColor = Color.Black
 
         For i = 1 To 10
             MouseDraw(i * xSpace, 0, i * xSpace, DrawingPictureBox.Height)
@@ -49,8 +48,6 @@ Public Class EtchASketch
         Dim lastY As Integer = peak * Math.Sin(0) + 2 * peak
         Dim lastX As Integer = 0
 
-        penColor(Color.Yellow)
-
         For i As Integer = 1 To DrawingPictureBox.Width
             currentY = peak * Math.Sin(i * degrees) + 2 * peak
             MouseDraw(lastX, lastY, i, currentY)
@@ -61,19 +58,26 @@ Public Class EtchASketch
     End Sub
 
     'Buttons----------------------
-    Private Sub ExitButton_Click(sender As Object, e As EventArgs) Handles ExitButton.Click
-        Me.Close()
-    End Sub
-
     Private Sub ClearButton_Click(sender As Object, e As EventArgs) Handles ClearButton.Click
         DrawingPictureBox.Image = Nothing
         DrawingPictureBox.BackColor = Color.White
         penColor(Color.Black)
     End Sub
 
+    Private Sub ColorSelectButton_Click(sender As Object, e As EventArgs) Handles ColorSelectButton.Click
+        Dim ColorDialog As New ColorDialog
+        If ColorDialog.ShowDialog() = DialogResult.OK Then
+            penColor(ColorDialog.Color)
+        End If
+    End Sub
+
+    Private Sub ExitButton_Click(sender As Object, e As EventArgs) Handles ExitButton.Click
+        Me.Close()
+    End Sub
+
     Private Sub WaveFormButton_Click(sender As Object, e As EventArgs) Handles WaveFormButton.Click
-        DrawDivisions()
         DrawSineWave()
+        DrawDivisions()
     End Sub
 
     '-----------------------------
