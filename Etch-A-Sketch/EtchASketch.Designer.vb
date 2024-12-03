@@ -22,12 +22,14 @@ Partial Class EtchASketch
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+        Me.components = New System.ComponentModel.Container()
         Me.DrawingPictureBox = New System.Windows.Forms.PictureBox()
         Me.ButtonBox = New System.Windows.Forms.GroupBox()
         Me.WaveFormButton = New System.Windows.Forms.Button()
         Me.ColorSelectButton = New System.Windows.Forms.Button()
         Me.ClearButton = New System.Windows.Forms.Button()
         Me.ExitButton = New System.Windows.Forms.Button()
+        Me.ToolTip1 = New System.Windows.Forms.ToolTip(Me.components)
         CType(Me.DrawingPictureBox, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.ButtonBox.SuspendLayout()
         Me.SuspendLayout()
@@ -42,6 +44,7 @@ Partial Class EtchASketch
         Me.DrawingPictureBox.Size = New System.Drawing.Size(776, 346)
         Me.DrawingPictureBox.TabIndex = 0
         Me.DrawingPictureBox.TabStop = False
+        Me.ToolTip1.SetToolTip(Me.DrawingPictureBox, "The space to draw on.")
         '
         'ButtonBox
         '
@@ -63,6 +66,7 @@ Partial Class EtchASketch
         Me.WaveFormButton.Size = New System.Drawing.Size(91, 55)
         Me.WaveFormButton.TabIndex = 0
         Me.WaveFormButton.Text = "&WaveForm"
+        Me.ToolTip1.SetToolTip(Me.WaveFormButton, "Creates a sine wave on the drawing pad.")
         Me.WaveFormButton.UseVisualStyleBackColor = True
         '
         'ColorSelectButton
@@ -72,6 +76,7 @@ Partial Class EtchASketch
         Me.ColorSelectButton.Size = New System.Drawing.Size(91, 55)
         Me.ColorSelectButton.TabIndex = 1
         Me.ColorSelectButton.Text = "Color &Select"
+        Me.ToolTip1.SetToolTip(Me.ColorSelectButton, "Allows to change the color of the pen.")
         Me.ColorSelectButton.UseVisualStyleBackColor = True
         '
         'ClearButton
@@ -81,6 +86,7 @@ Partial Class EtchASketch
         Me.ClearButton.Size = New System.Drawing.Size(91, 55)
         Me.ClearButton.TabIndex = 2
         Me.ClearButton.Text = "&Clear"
+        Me.ToolTip1.SetToolTip(Me.ClearButton, "Clears the drawing space.")
         Me.ClearButton.UseVisualStyleBackColor = True
         '
         'ExitButton
@@ -90,6 +96,7 @@ Partial Class EtchASketch
         Me.ExitButton.Size = New System.Drawing.Size(91, 55)
         Me.ExitButton.TabIndex = 3
         Me.ExitButton.Text = "E&xit"
+        Me.ToolTip1.SetToolTip(Me.ExitButton, "Closes the form.")
         Me.ExitButton.UseVisualStyleBackColor = True
         '
         'EtchASketch
@@ -113,4 +120,5 @@ Partial Class EtchASketch
     Friend WithEvents ColorSelectButton As Button
     Friend WithEvents ClearButton As Button
     Friend WithEvents ExitButton As Button
+    Friend WithEvents ToolTip1 As ToolTip
 End Class
