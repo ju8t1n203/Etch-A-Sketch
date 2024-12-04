@@ -2,11 +2,12 @@
 'RCET0265
 'Fall24
 'Etch-A-Sketch
-'link
+'https://github.com/ju8t1n203/Etch-A-Sketch
 
 Public Class EtchASketch
 
     Function penColor(Optional newColor As Color = Nothing) As Color
+        'holds and updates the drawing tool color
         Static _color As Color
 
         If newColor <> Nothing Then
@@ -17,6 +18,7 @@ Public Class EtchASketch
     End Function
 
     Sub MouseDraw(startX As Integer, startY As Integer, endX As Integer, endY As Integer)
+        'tracks the mouse for drawing
         Dim g As Graphics = DrawingPictureBox.CreateGraphics()
         Dim pen As New Pen(penColor())
 
@@ -26,8 +28,9 @@ Public Class EtchASketch
     End Sub
 
     Sub DrawDivisions()
+        'creates a 10x10 grid to plot on
         Dim xSpace As Integer = DrawingPictureBox.Width \ 10
-        Dim ySpace As Integer = DrawingPictureBox.Height \ 8
+        Dim ySpace As Integer = DrawingPictureBox.Height \ 10
 
         penColor(Color.LightGray)
 
@@ -41,6 +44,7 @@ Public Class EtchASketch
     End Sub
 
     Sub DrawCosineWave()
+        'all the matmatics for the cosine wave
         Dim degrees As Double = Math.PI / 180
         Dim peak As Integer = DrawingPictureBox.Height / 4
         Dim currentY As Integer
@@ -59,6 +63,7 @@ Public Class EtchASketch
     End Sub
 
     Sub DrawSineWave()
+        'all the matmatics for the sine wave
         Dim degrees As Double = Math.PI / 180
         Dim peak As Integer = DrawingPictureBox.Height / 4
         Dim currentY As Integer
@@ -77,6 +82,7 @@ Public Class EtchASketch
     End Sub
 
     Sub DrawTangentWave()
+        'all the matmatics for the tangent wave
         Dim degrees As Double = Math.PI / 180
         Dim peak As Integer = DrawingPictureBox.Height / 4
         Dim currentY As Double
@@ -84,7 +90,7 @@ Public Class EtchASketch
         Dim lastX As Integer = 0
 
         penColor(Color.Green)
-
+        'prevents arithmatic overflow
         For i As Integer = 1 To DrawingPictureBox.Width
             currentY = peak * Math.Tan(i * degrees) + 2 * peak
             If Math.Abs(currentY) <= 1000 Then
@@ -101,12 +107,14 @@ Public Class EtchASketch
 
     'Buttons----------------------
     Private Sub ClearButton_Click(sender As Object, e As EventArgs) Handles ClearButton.Click
+        'clears the drawing space
         DrawingPictureBox.Image = Nothing
         DrawingPictureBox.BackColor = Color.White
         penColor(Color.Black)
     End Sub
 
     Private Sub ColorSelectButton_Click(sender As Object, e As EventArgs) Handles ColorSelectButton.Click
+        'opens a dialog for the user to change the tool color
         Dim ColorDialog As New ColorDialog
         If ColorDialog.ShowDialog() = DialogResult.OK Then
             penColor(ColorDialog.Color)
@@ -126,12 +134,14 @@ Public Class EtchASketch
 
     'Other Events------------------
     Private Sub GraphicsExample_Load(sender As Object, e As EventArgs) Handles Me.Load
+        'sets the defaults
         penColor(Color.Black)
         DrawingPictureBox.BackColor = Color.White
     End Sub
 
     Private Sub DrawingPictureBox_MouseMove(sender As Object, e As MouseEventArgs) Handles DrawingPictureBox.MouseDown, DrawingPictureBox.MouseMove
-        Me.Text = $"({e.X.ToString}, {e.Y.ToString}) Button: {e.Button} Color: {penColor().Name}"
+        'shows the coordinates and current tool color on the top of the form
+        Me.Text = $"({e.X.ToString}, {e.Y.ToString})    Color: {penColor().Name}"
         Static oldX%, oldY%
 
         If e.Button = MouseButtons.Left Then
@@ -143,4 +153,28 @@ Public Class EtchASketch
 
     End Sub
 
+    'Context Things---------------
+    Private Sub SelectColorToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles SelectColorToolStripMenuItem.Click
+        ColorSelectButton.PerformClick()
+    End Sub
+
+    Private Sub DrawWaveformsToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles DrawWaveformsToolStripMenuItem.Click
+        WaveFormButton.PerformClick()
+    End Sub
+
+    Private Sub ClearToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ClearToolStripMenuItem.Click
+        ClearButton.PerformClick()
+    End Sub
+
+    'Menu Things------------------
+    Private Sub ExitToolStripMenuItem1_Click(sender As Object, e As EventArgs) Handles ExitToolStripMenuItem1.Click
+        ExitButton.PerformClick()
+    End Sub
+
+    Private Sub AboutToolStripMenuItem2_Click(sender As Object, e As EventArgs) Handles AboutToolStripMenuItem2.Click
+        MsgBox("Welcome to the colorful kingdom of Etch-A-Sketch,
+ where imagination meets pixel perfection!
+ In this digital wonderland, every mouse click and brush stroke
+ brings your ideas to life with a splash of creativity!")
+    End Sub
 End Class
